@@ -1,0 +1,105 @@
+<div class="home-container">
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Välkommen till Universitetet</h1>
+            <p class="hero-subtitle">
+                Utforska vårt omfattande kursutbud och skapa ditt personliga ramschema
+            </p>
+            <div class="hero-actions">
+                <a routerLink="/courses" class="btn btn-primary">
+                    Bläddra bland kurser
+                </a>
+                <a routerLink="/schedule" class="btn btn-secondary">
+                    Mitt ramschema
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-container">
+            <h2>Översikt</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <h3>{{ totalCourses$ | async }}</h3>
+                        <p>Tillgängliga kurser</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <h3>{{ totalSubjects$ | async }}</h3>
+                        <p>Olika ämnesområden</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <h3>{{ scheduleCount$ | async }}</h3>
+                        <p>Kurser i ditt ramschema</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <h3>{{ totalSchedulePoints$ | async }}</h3>
+                        <p>Högskolepoäng planerade</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="features-container">
+            <h2>Funktioner</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Sök och filtrera</h3>
+                    <p>Hitta kurser enkelt genom att söka på kurskod, kursnamn eller filtrera efter ämne.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Sortera kurser</h3>
+                    <p>Sortera kurslistan efter kurskod, kursnamn, poäng eller ämne för bättre överblick.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Spara ramschema</h3>
+                    <p>Ditt ramschema sparas automatiskt och är tillgängligt nästa gång du besöker sidan.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Responsiv design</h3>
+                    <p>Använd webbplatsen på alla enheter - desktop, tablet eller mobil.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quick-actions-section">
+        <div class="quick-actions-container">
+            <h2>Kom igång</h2>
+            <div class="quick-actions-grid">
+                <div class="action-card">
+                    <h3>Utforska kurser</h3>
+                    <p>Bläddra genom vårt kursutbud och hitta kurser som passar dina intressen.</p>
+                    <a routerLink="/courses" class="action-link">Visa alla kurser →</a>
+                </div>
+
+                <div class="action-card" *ngIf="(scheduleCount$ | async)! > 0">
+                    <h3>Hantera ramschema</h3>
+                    <p>Du har {{ scheduleCount$ | async }} kurser i ditt ramschema. Visa eller redigera dem.</p>
+                    <a routerLink="/schedule" class="action-link">Öppna ramschema</a>
+                </div>
+
+                <div class="action-card" *ngIf="(scheduleCount$ | async) === 0">
+                    <h3>Skapa ramschema</h3>
+                    <p>Du har inga kurser i ditt ramschema än. Börja planera dina studier idag!</p>
+                    <a routerLink="/courses" class="action-link">Lägg till kurser</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
