@@ -6,7 +6,14 @@
         <ul class="nav-links">
             <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Hem</a></li>
             <li><a routerLink="/courses" routerLinkActive="active">Kurser</a></li>
-            <li><a routerLink="/schedule" routerLinkActive="active">Ramschema</a></li>
+            <li>
+                <a routerLink="/schedule" routerLinkActive="active">
+                    Ramschema
+                    <span class="schedule-badge" *ngIf="(scheduleCount$ | async)! > 0">
+                        {{ scheduleCount$ | async }}
+                    </span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

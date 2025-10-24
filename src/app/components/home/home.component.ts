@@ -12,7 +12,7 @@ import { Observable, map } from 'rxjs';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit {  // <-- Make sure "export" is here!
     totalCourses$!: Observable<number>;
     totalSubjects$!: Observable<number>;
     scheduleCount$!: Observable<number>;
