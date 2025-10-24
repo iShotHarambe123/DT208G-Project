@@ -1,0 +1,59 @@
+<div class="schedule-container">
+    <header class="page-header">
+        <div class="header-content">
+            <div>
+                <h1>Mitt Ramschema</h1>
+                <p>Hantera dina valda kurser och planera dina studier</p>
+            </div>
+            <button *ngIf="(schedule$ | async)?.length! > 0" (click)="clearSchedule()" class="btn btn-secondary">
+                Rensa ramschema
+            </button>
+        </div>
+    </header>
+
+    <section class="summary-section" *ngIf="(schedule$ | async)?.length! > 0">
+        <div class="summary-cards">
+            <div class="summary-card">
+                <h3>{{ (schedule$ | async)?.length }}</h3>
+                <p>Kurser</p>
+            </div>
+            <div class="summary-card">
+                <h3>{{ totalPoints$ | async }}</h3>
+                <p>Högskolepoäng</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="schedule-section">
+        <div class="courses-list" *ngIf="(schedule$ | async)?.length! > 0">
+            <div class="course-item" *ngFor="let course of schedule$ | async">
+                <div class="course-info">
+                    <div class="course-main">
+                        <h3>{{ course.courseCode }}</h3>
+                        <span class="course-points">{{ course.points }} hp</span>
+                    </div>
+                    <h4>{{ course.courseName }}</h4>
+                    <div class="course-meta">
+                        <span><strong>Ämne:</strong> {{ course.subject }}</span>
+                        <span><strong>Nivå:</strong> {{ course.level }}</span>
+                        <span><strong>Progression:</strong> {{ course.progression }}</span>
+                    </div>
+                </div>
+                <div class="course-actions">
+                    <a [href]="course.syllabus" target="_blank" class="btn btn-secondary">
+                        Kursplan
+                    </a>
+                    <button (click)="removeCourse(course.courseCode)" class="btn btn-remove">
+                        Ta bort
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="empty-state" *ngIf="(schedule$ | async)?.length === 0">
+            <h2>Ditt ramschema är tomt</h2>
+            <p>Du har inte lagt till några kurser i ditt ramschema än.</p>
+            <a routerLink="/courses" class="btn btn-primary">Bläddra bland kurser</a>
+        </div>
+    </section>
+</div>

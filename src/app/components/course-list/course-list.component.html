@@ -1,0 +1,73 @@
+<div class="course-list-container">
+    <header class="page-header">
+        <h1>Kurskatalog</h1>
+        <p>Bläddra genom alla tillgängliga kurser och lägg till dem i ditt ramschema</p>
+    </header>
+
+    <section class="filters-section">
+        <div class="filters-container">
+            <div class="filter-group">
+                <label for="search">Sök kurser</label>
+                <input type="text" id="search" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()"
+                    placeholder="Sök på kurskod eller kursnamn..." />
+            </div>
+
+            <div class="filter-group">
+                <label for="subject">Ämne</label>
+                <select id="subject" [(ngModel)]="selectedSubject" (ngModelChange)="onSubjectChange()">
+                    <option value="">Alla ämnen</option>
+                    <option *ngFor="let subject of subjects$ | async" [value]="subject">
+                        {{ subject }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="sort">Sortera efter</label>
+                <select id="sort" [(ngModel)]="sortBy" (ngModelChange)="onSortChange()">
+                    <option value="courseCode">Kurskod</option>
+                    <option value="courseName">Kursnamn</option>
+                    <option value="points">Poäng</option>
+                    <option value="subject">Ämne</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="courses-section">
+        <div class="courses-info">
+            <p>Visar {{ filteredCourses.length }} kurser</p>
+        </div>
+
+        <div class="courses-grid">
+            <div class="course-card" *ngFor="let course of filteredCourses">
+                <div class="course-header">
+                    <h3>{{ course.courseCode }}</h3>
+                    <span class="course-points">{{ course.points }} hp</span>
+                </div>
+
+                <h4 class="course-name">{{ course.courseName }}</h4>
+
+                <div class="course-details">
+                    <p><strong>Ämne:</strong> {{ course.subject }}</p>
+                    <p><strong>Nivå:</strong> {{ course.level }}</p>
+                    <p><strong>Progression:</strong> {{ course.progression }}</p>
+                </div>
+
+                <div class="course-actions">
+                    <a [href]="course.syllabus" target="_blank" class="btn btn-secondary">
+                        Kursplan
+                    </a>
+                    <button (click)="addToSchedule(course)" [disabled]="(isCourseInSchedule(course.courseCode) | async)"
+                        class="btn btn-primary">
+                        {{ (isCourseInSchedule(course.courseCode) | async) ? 'Tillagd' : 'Lägg till' }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-courses" *ngIf="filteredCourses.length === 0">
+            <p>Inga kurser hittades som matchar dina sökkriterier.</p>
+        </div>
+    </section>
+</div>
