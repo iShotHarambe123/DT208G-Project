@@ -1,59 +1,80 @@
-# Projekt
+# 🎓 Universitetet - Kurskatalog
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.6.
+En modern webbapplikation byggd med Angular och TypeScript för att hantera kurser och ramscheman. Applikationen låter studenter söka bland kurser, filtrera och sortera dem, samt skapa och hantera personliga ramscheman.
 
-## Development server
+## ✨ Funktionalitet
 
-To start a local development server, run:
+### 📋 Grundkrav
 
-```bash
-ng serve
-```
+**🔧 Teknisk implementation:**
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- ✅ Angular med TypeScript
+- ✅ Komponentbaserad arkitektur med routing
+- ✅ Två services: `CourseService` och `ScheduleService`
+- ✅ Responsiv design för alla skärmstorlekar
+- ✅ Git-versionhantering
+- ✅ Publicering på Netlify
 
-## Code scaffolding
+**📚 Kursfunktionalitet:**
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- ✅ Sortering på kurskod, kursnamn, poäng och ämne
+- ✅ Filtrering på kurskod och kursnamn (sökfunktion)
+- ✅ Ämnesfiltrering via dropdown
+- ✅ Lägg till kurser i ramschema
+- ✅ Visar antal kurser i aktuell sökning
+- ✅ Förhindrar dubbletter i ramschema
 
-```bash
-ng generate component component-name
-```
+**📅 Ramschema:**
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- ✅ Visa valda kurser
+- ✅ Beräkna totala högskolepoäng
+- ✅ Ta bort kurser från ramschema
+- ✅ localStorage för persistent lagring
+- ✅ Automatisk inladdning vid sidstart
 
-```bash
-ng generate --help
-```
+### 🚀 Valfri funktionalitet (Implementerad för överbetyg)
 
-## Building
+**1. 🏠 Startsida med statistik**
 
-To build the project run:
+- Översikt över totalt antal kurser i systemet
+- Antal unika ämnesområden
+- Aktuell status för användarens ramschema (antal kurser och poäng)
+- Snabblänkar till huvudfunktioner
 
-```bash
-ng build
-```
+**2. 🎨 Förbättrat användargränssnitt**
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- Modern, ren design med CSS-variabler för konsekvent styling
+- Visuell feedback för hover-effekter och interaktioner
+- Tydlig navigation med aktiv länkmarkering
+- Badge-indikator som visar antal kurser i ramschema
+- Responsiv grid-layout för kursvisning
 
-## Running unit tests
+**3. 💫 Förbättrad användarupplevelse**
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Bekräftelsedialoger för kritiska åtgärder (ta bort kurs, rensa ramschema)
+- Visuell indikation när kurser redan finns i ramschema
+- Smidig navigation mellan sektioner
+- Automatisk uppdatering av alla vyer vid ändringar
 
-```bash
-ng test
-```
+## 🏗️ Teknisk arkitektur
 
-## Running end-to-end tests
+### 🧩 Komponenter
 
-For end-to-end (e2e) testing, run:
+- `App` - Huvudkomponent med navigation
+- `HomeComponent` - Startsida med statistik
+- `CourseListComponent` - Kurssökning och -visning
+- `ScheduleComponent` - Ramschemahantering
+- `NavigationComponent` - Huvudnavigation
 
-```bash
-ng e2e
-```
+### ⚙️ Services
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- `CourseService` - Hanterar kursdata, filtrering och sortering
+- `ScheduleService` - Hanterar ramschema och localStorage
 
-## Additional Resources
+### 📊 Datamodell
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `Course` interface - Definierar kursstruktur enligt JSON-specifikation
+
+## 🌐 Deployment
+
+Applikationen är konfigurerad för automatisk deployment på Netlify via `netlify.toml`. Vid push till huvudbranchen byggs och publiceras applikationen automatiskt.
